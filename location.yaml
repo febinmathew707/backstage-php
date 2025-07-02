@@ -1,0 +1,9 @@
+# This file tells Backstage to scan this repository for catalog-info.yaml files
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: backstage-php-location
+  description: A location for my awesome app
+spec:
+  targets:
+    - ./catalog-info.yaml

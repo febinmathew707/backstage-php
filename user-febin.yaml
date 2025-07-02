@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: febin-mathew # Use a simple unique name
+spec:
+  profile:
+    displayName: Febin Mathew
+    email: febinmathew707@gmail.com
+  memberOf: [my-team] 
