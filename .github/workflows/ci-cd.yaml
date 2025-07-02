@@ -1,0 +1,43 @@
+name: CI-CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Deploy to Production
+        # This is a placeholder for your deployment command.
+        # You would replace this with your actual deployment script or command.
+        # For example, deploying to a cloud provider like AWS, Google Cloud, or Azure.
+        run: |
+          echo "Deploying to production..."
+          # Example for deploying to a server via SSH:
+          # ssh user@your-server.com "cd /path/to/your/app && git pull && npm install && pm2 restart your-app"
+          echo "Deployment successful!"
